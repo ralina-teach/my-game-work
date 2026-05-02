@@ -265,7 +265,7 @@ const loader = new GLTFLoader();
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         // ЛОШАДКА
-loader.load('models/Horse.glb', (gltf) => {
+loader.load('https://threejs.org/examples/models/gltf/Horse.glb', {
     const horse = gltf.scene;
     horse.position.set(0, -0.2, 6);
     horse.scale.set(0.6, 0.6, 0.6);
