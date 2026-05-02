@@ -265,18 +265,28 @@ const loader = new GLTFLoader();
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         // ЛОШАДКА
-                
+                  
+        let horse = null;
         loader.load('https://threejs.org/examples/models/gltf/Horse.glb', (gltf) => {
-            const horse = gltf.scene;
-            // Уменьшаем лошадку и ставим на землю
-            horse.position.set(0, -0.75, 5);
-            horse.scale.set(0.12, 0.12, 0.12);
+            horse = gltf.scene;
+            horse.position.set(0, -0.65, 4.5);
+            horse.scale.set(0.09, 0.09, 0.09);
+            horse.rotation.y = Math.PI / 2;
             horse.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
-                    node.receiveShadow = false;
+                    node.receiveShadow = true;
+                    if (node.material) {
+                        node.material.roughness = 0.4;
+                        node.material.metalness = 0.1;
+                    }
                 }
             });
+            scene.add(horse);
+            console.log('✅ Маленькая лошадка на месте!');
+        }, undefined, (error) => {
+            console.error('❌ Ошибка лошадки:', error);
+        });
             scene.add(horse);
             console.log('Лошадка загружена! Размер уменьшен');
         }, undefined, (error) => {
