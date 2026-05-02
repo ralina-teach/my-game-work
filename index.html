@@ -100,6 +100,8 @@
 
     <script type="module">
         import * as THREE from 'three';
+        import { GLTFLoader } from 'https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
+const loader = new GLTFLoader();
 
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x87CEEB);
@@ -262,6 +264,17 @@
         playerGroup.position.set(0, -0.2, 2.8);
         playerGroup.castShadow = true;
         scene.add(playerGroup);
+        // ЛОШАДКА
+loader.load('models/Horse.glb', (gltf) => {
+    const horse = gltf.scene;
+    horse.position.set(0, -0.2, 6);
+    horse.scale.set(0.6, 0.6, 0.6);
+    horse.castShadow = true;
+    scene.add(horse);
+    console.log('Лошадка загружена!');
+}, undefined, (error) => {
+    console.error('Ошибка загрузки лошадки:', error);
+});
         
         // ===== ПОЕЗДА =====
         function createObstacle(lane, zPos) {
