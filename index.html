@@ -265,16 +265,21 @@ const loader = new GLTFLoader();
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         // ЛОШАДКА
-loader.load('https://threejs.org/examples/models/gltf/Horse.glb', {
-    const horse = gltf.scene;
-    horse.position.set(0, -0.2, 6);
-    horse.scale.set(0.6, 0.6, 0.6);
-    horse.castShadow = true;
-    scene.add(horse);
-    console.log('Лошадка загружена!');
-}, undefined, (error) => {
-    console.error('Ошибка загрузки лошадки:', error);
-});
+        loader.load('https://threejs.org/examples/models/gltf/Horse.glb', (gltf) => {
+            const horse = gltf.scene;
+            horse.position.set(0, -0.3, 5);
+            horse.scale.set(0.35, 0.35, 0.35);
+            horse.traverse((node) => {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    node.receiveShadow = false;
+                }
+            });
+            scene.add(horse);
+            console.log('Лошадка загружена!');
+        }, undefined, (error) => {
+            console.error('Ошибка загрузки лошадки:', error);
+        });
         
         // ===== ПОЕЗДА =====
         function createObstacle(lane, zPos) {
