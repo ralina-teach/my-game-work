@@ -265,16 +265,13 @@
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         
-        // ===== ЛОШАДКА (МАЛЕНЬКАЯ, НА ДОРОЖКЕ) =====
+     
+              // ЛОШАДКА - КРОШЕЧНАЯ (2 СМ)
         loader.load('https://threejs.org/examples/models/gltf/Horse.glb', (gltf) => {
             const horse = gltf.scene;
-            // ПОЗИЦИЯ: на дорожке, перед игроком
-            horse.position.set(0, -0.8, 4.5);
-            // РАЗМЕР: маленькая (0.08)
-            horse.scale.set(0.08, 0.08, 0.08);
-            // ПОВОРОТ: смотрит на игрока
+            horse.position.set(0, -0.85, 4.5);
+            horse.scale.set(0.01, 0.01, 0.01);
             horse.rotation.y = Math.PI;
-            // ТЕНИ
             horse.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -282,11 +279,10 @@
                 }
             });
             scene.add(horse);
-            console.log('✅ Маленькая лошадка на дорожке!');
+            console.log('✅ Крошечная лошадка 2 см!');
         }, undefined, (error) => {
-            console.error('❌ Ошибка загрузки лошадки:', error);
-        });
-        
+            console.error('❌ Ошибка:', error);
+     
         // ===== ПОЕЗДА =====
         function createObstacle(lane, zPos) {
             const group = new THREE.Group();
