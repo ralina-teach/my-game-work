@@ -265,21 +265,26 @@
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         
-        // ЛОШАДКА - ИСПРАВЛЕНО
-        loader.load('https://threejs.org/examples/models/gltf/Horse.glb', (gltf) => {
-            const horse = gltf.scene;
-            horse.position.set(0, -0.55, 4.5);
-            horse.scale.set(0.12, 0.12, 0.12);
-            horse.traverse((node) => {
+                // ПОПУГАЙ - ЯРКАЯ МАЛЕНЬКАЯ ПТИЧКА
+        loader.load('https://threejs.org/examples/models/gltf/Parrot.glb', (gltf) => {
+            const parrot = gltf.scene;
+            // Позиция: на земле, перед игроком
+            parrot.position.set(0, -0.65, 4.5);
+            // Размер: маленький, как птичка
+            parrot.scale.set(0.15, 0.15, 0.15);
+            // Поворот: смотрит на игрока
+            parrot.rotation.y = Math.PI;
+            // Включаем тени
+            parrot.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
-                    node.receiveShadow = false;
+                    node.receiveShadow = true;
                 }
             });
-            scene.add(horse);
-            console.log('Лошадка загружена!');
+            scene.add(parrot);
+            console.log('✅ Попугай на дорожке!');
         }, undefined, (error) => {
-            console.error('Ошибка загрузки лошадки:', error);
+            console.error('❌ Ошибка загрузки попугая:', error);
         });
         
         // ===== ПОЕЗДА =====
