@@ -265,8 +265,7 @@
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         
-     
-              // ЛОШАДКА - КРОШЕЧНАЯ (2 СМ)
+        // ===== ЛОШАДКА (МАЛЕНЬКАЯ) =====
         loader.load('https://threejs.org/examples/models/gltf/Horse.glb', (gltf) => {
             const horse = gltf.scene;
             horse.position.set(0, -0.85, 4.5);
@@ -279,10 +278,11 @@
                 }
             });
             scene.add(horse);
-            console.log('✅ Крошечная лошадка 2 см!');
+            console.log('✅ Лошадка загружена!');
         }, undefined, (error) => {
-            console.error('❌ Ошибка:', error);
-     
+            console.error('Ошибка загрузки лошадки:', error);
+        });
+        
         // ===== ПОЕЗДА =====
         function createObstacle(lane, zPos) {
             const group = new THREE.Group();
