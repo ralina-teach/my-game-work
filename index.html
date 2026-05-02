@@ -265,18 +265,24 @@
         playerGroup.castShadow = true;
         scene.add(playerGroup);
         
-                // ПОПУГАЙ - МАЛЕНЬКИЙ
+           
+                // ПОПУГАЙ - ЛЕТАЕТ СЛЕВА
         loader.load('https://threejs.org/examples/models/gltf/Parrot.glb', (gltf) => {
             const parrot = gltf.scene;
-            parrot.position.set(0, -0.8, 4);
-            parrot.scale.set(0.03, 0.03, 0.03);
-            parrot.rotation.y = Math.PI;
+            parrot.position.set(-3, 1.2, 4);
+            parrot.scale.set(0.035, 0.035, 0.035);
+            parrot.rotation.y = Math.PI / 4;
             parrot.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
                     node.receiveShadow = true;
                 }
             });
+            scene.add(parrot);
+            console.log('✅ Попугай слева!');
+        }, undefined, (error) => {
+            console.error('❌ Ошибка:', error);
+        });
             scene.add(parrot);
             console.log('✅ Маленький попугай на земле!');
         }, undefined, (error) => {
