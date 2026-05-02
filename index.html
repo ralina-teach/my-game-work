@@ -266,32 +266,21 @@
         scene.add(playerGroup);
         
            
-                // ПОПУГАЙ - ЛЕТАЕТ СЛЕВА
-        loader.load('https://threejs.org/examples/models/gltf/Parrot.glb', (gltf) => {
-            const parrot = gltf.scene;
-            parrot.position.set(-3, 1.2, 4);
-            parrot.scale.set(0.035, 0.035, 0.035);
-            parrot.rotation.y = Math.PI / 4;
-            parrot.traverse((node) => {
+               // КРИСТАЛЛ - МАЛЕНЬКАЯ 3D МОДЕЛЬ
+        loader.load('https://threejs.org/examples/models/gltf/RobotExpressive.glb', (gltf) => {
+            const robot = gltf.scene;
+            robot.position.set(0, -0.7, 4.5);
+            robot.scale.set(0.1, 0.1, 0.1);
+            robot.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
                     node.receiveShadow = true;
                 }
             });
-            scene.add(parrot);
-            console.log('✅ Попугай слева!');
+            scene.add(robot);
+            console.log('✅ Робот на дорожке!');
         }, undefined, (error) => {
             console.error('❌ Ошибка:', error);
-        });
-            scene.add(parrot);
-            console.log('✅ Маленький попугай на земле!');
-        }, undefined, (error) => {
-            console.error('❌ Ошибка:', error);
-        });
-            scene.add(parrot);
-            console.log('✅ Попугай на дорожке!');
-        }, undefined, (error) => {
-            console.error('❌ Ошибка загрузки попугая:', error);
         });
         
         // ===== ПОЕЗДА =====
